@@ -8,7 +8,7 @@ namespace Mapbox.Unity.Location
 	using Mapbox.CheapRulerCs;
 	using System;
 	using System.Linq;
-
+	using UnityEngine.UI;
 
 
 	/// <summary>
@@ -20,6 +20,7 @@ namespace Mapbox.Unity.Location
 	public class DeviceLocationProvider : AbstractLocationProvider
 	{
 
+		public GameObject LocationText;
 
 		/// <summary>
 		/// Using higher value like 500 usually does not require to turn GPS chip on and thus saves battery power. 
@@ -338,7 +339,7 @@ namespace Mapbox.Unity.Location
 
 				_currentLocation.TimestampDevice = UnixTimestampUtils.To(DateTime.UtcNow);
 				SendLocation(_currentLocation);
-
+				LocationText.GetComponent<Text>().text = _currentLocation.LatitudeLongitude.ToString();
 				yield return _waitUpdateTime;
 			}
 		}

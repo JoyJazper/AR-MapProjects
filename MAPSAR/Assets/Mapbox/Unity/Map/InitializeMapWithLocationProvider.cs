@@ -3,6 +3,7 @@
 	using System.Collections;
 	using Mapbox.Unity.Location;
 	using UnityEngine;
+	using UnityEngine.UI;
 
 	public class InitializeMapWithLocationProvider : MonoBehaviour
 	{
@@ -10,6 +11,8 @@
 		AbstractMap _map;
 
 		ILocationProvider _locationProvider;
+
+		//public GameObject LocationText;
     
 		private void Awake()
 		{
@@ -28,6 +31,8 @@
 		{
 			_locationProvider.OnLocationUpdated -= LocationProvider_OnLocationUpdated;
 			_map.Initialize(location.LatitudeLongitude, _map.AbsoluteZoom);
+			//LocationText.GetComponent<Text>().text = location.LatitudeLongitude.ToString();
+
 		}
 	}
 }
